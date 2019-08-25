@@ -1,0 +1,72 @@
+@import "../../assets/scss/flex";
+@import "../../assets/scss/color";
+@import "../../assets/scss/mediaquery";
+
+.Email {
+  width: 100%;
+  height: 100%;
+  @include flexToCenterColumn();
+  position: relative;
+
+  .Text {
+    color: $whiteColor;
+    position: relative;
+    bottom: 10%;
+    font-size: 1.2em;
+  }
+
+  .SubText {
+    position: relative;
+    bottom: 10%;
+    font-size: 1em;
+    margin-top: 10px;
+    color: $whiteColor;
+  }
+
+  .Container {
+    @include flexToCenterRow();
+    width: 70%;
+    background-color: $whiteColor;
+    position: relative;
+    bottom: 5%;
+
+    @include md {
+      width: 30%;
+    }
+
+    .InputContainer {
+      flex-basis: 85%;
+      height: 50px;
+      @include flexToCenterRow();
+    }
+
+    .Input {
+      border: 0;
+      width: 100%;
+      height: 50%;
+      outline: none;
+      padding: 0px 10px;
+      font-size: 1.2em;
+    }
+
+    .Arrow {
+      flex-basis: 15%;
+      cursor: pointer;
+      @include flexToCenterRow();
+    }
+  }
+
+  .GoBack {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+
+    .Back {
+      color: $whiteColor;
+      margin-left: 5px;
+    }
+  }
+}

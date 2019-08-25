@@ -4,3 +4,10 @@
   flex-direction: column;
   align-items: center;
 }
+
+@mixin flexToCenterRow {
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

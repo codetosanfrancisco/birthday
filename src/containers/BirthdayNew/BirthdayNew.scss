@@ -5,8 +5,11 @@
 .BirthdayNew {
   background-color: $greyColor;
   width: 100vw;
-  height: 100vh;
   @include flexToCenterColumn();
   padding: 50px 0px;
   box-sizing: border-box;
+}
+
+.Element {
+  width: 100%;
 }

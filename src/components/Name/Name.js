@@ -11,7 +11,9 @@ const Name = props => {
           <input
             className="Input"
             value={props.value}
-            onChange={event => props.onChange(event.target.value)}
+            onChange={event => props.onChange(event)}
+            onKeyDown={event => props.onChange(event)}
+            autoFocus
           />
         </div>
 
@@ -19,7 +21,7 @@ const Name = props => {
           {props.isValid && (
             <FiArrowRightCircle
               size="1.2em"
-              onClick={() => props.history.push(props.nextAction)}
+              onClick={() => props.nextAction()}
             />
           )}
         </div>

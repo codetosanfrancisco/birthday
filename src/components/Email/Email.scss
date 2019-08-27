@@ -1,12 +1,11 @@
 @import "../../assets/scss/flex";
 @import "../../assets/scss/color";
 @import "../../assets/scss/mediaquery";
+@import "../../assets/scss/container";
 
 .Email {
-  width: 100%;
-  height: 100%;
+  @include WHRelative();
   @include flexToCenterColumn();
-  position: relative;
 
   .Text {
     color: $whiteColor;
@@ -57,12 +56,11 @@
   }
 
   .GoBack {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flexToCenterRow();
     padding: 10px;
     position: absolute;
     bottom: 0;
+    left: 5%;
 
     .Back {
       color: $whiteColor;

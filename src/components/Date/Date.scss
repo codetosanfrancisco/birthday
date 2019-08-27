@@ -1,1 +1,86 @@
-@import "../../../node_modules/react-alice-carousel/lib/scss/alice-carousel.scss";
+@import "../../assets/scss/flex";
+@import "../../assets/scss/color";
+@import "../../assets/scss/container";
+
+.Date {
+  @include WHRelative();
+  @include flexToCenterColumn();
+
+  .GoBack {
+    @include flexToCenterRow();
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    left: 5%;
+
+    .Back {
+      color: $whiteColor;
+      margin-left: 5px;
+    }
+  }
+
+  .GoNext {
+    @include flexToCenterRow();
+    padding: 10px;
+    position: absolute;
+    bottom: 5%;
+    cursor: pointer;
+
+    .Next {
+      color: $whiteColor;
+      margin-right: 5px;
+    }
+  }
+
+  .When {
+    text-align: center;
+    color: $whiteColor;
+    position: relative;
+    bottom: 10%;
+  }
+
+  .Birthday {
+    display: flex;
+
+    .Month {
+      @include flexToCenterColumn();
+    }
+
+    .Day {
+      @include flexToCenterColumn();
+    }
+
+    .Dash {
+      width: 150px;
+      height: 150px;
+      @include flexToCenterColumn();
+
+      .Line {
+        width: 100px;
+        height: 5px;
+        border-radius: 3px;
+        background-color: $whiteColor;
+      }
+    }
+
+    .SubText {
+      color: $whiteColor;
+      font-size: 1em;
+      margin-top: 20px;
+    }
+
+    .Input {
+      text-align: center;
+      width: 150px;
+      height: 150px;
+      border-radius: 10px;
+      border: 2px solid $whiteColor;
+      background-color: transparent;
+      padding: 10px;
+      box-sizing: border-box;
+      outline: none;
+      font-size: 100px;
+      color: $whiteColor;
+    }
+  }
+}

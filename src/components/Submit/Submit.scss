@@ -1,5 +1,70 @@
+@import "../../assets/scss/flex";
+@import "../../assets/scss/color";
+
+.Modal {
+  @include flexToCenterColumn();
+
+  .Text {
+    font-size: 2em;
+  }
+
+  .SubText {
+    margin-top: 10px;
+    font-size: 1em;
+  }
+
+  .Button {
+    background-color: $greyColor;
+    color: $whiteColor;
+    font-size: 1em;
+    padding: 10px;
+    border: 0;
+    border-radius: 5px;
+    font-family: "Exo";
+    margin-top: 30px;
+    cursor: pointer;
+  }
+}
+
 .Submit {
   position: relative;
   width: 100%;
   height: 100vh;
+  @include flexToCenterColumn();
+  color: $whiteColor;
+
+  .Typing {
+    font-size: 3em;
+    position: relative;
+    bottom: 10%;
+  }
+
+  .SubmitEmail {
+    font-size: 2em;
+  }
+
+  .SubmitDate {
+    font-size: 2em;
+  }
+
+  .ConfirmButtonContainer {
+    position: relative;
+    top: 10%;
+  }
+
+  .ConfirmButton {
+    padding: 20px;
+    border-radius: 5px;
+    background-color: $orangeColor;
+    border: 0;
+    font-family: "Exo";
+    color: $whiteColor;
+    font-size: 1.5em;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .ConfirmButton:active {
+    background-color: $blackColor;
+  }
 }

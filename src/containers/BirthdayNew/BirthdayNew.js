@@ -9,6 +9,7 @@ import Submit from "../../components/Submit/Submit";
 import Add from "../../components/Add/Add";
 import validator from "validator";
 import { Element, scroller } from "react-scroll";
+import axios from "axios";
 
 const scroll = {
   duration: 500,
@@ -18,26 +19,29 @@ const scroll = {
 
 class BirthdayNew extends Component {
   state = {
-    name: {
-      value: "",
-      isValid: false
+    form: {
+      name: {
+        value: "",
+        isValid: false
+      },
+      email: {
+        value: "",
+        isValid: false
+      },
+      month: {
+        value: "",
+        isValid: false
+      },
+      day: {
+        value: "",
+        isValid: false
+      }
     },
-    email: {
-      value: "",
-      isValid: false
-    },
-    month: {
-      value: "",
-      isValid: false
-    },
-    day: {
-      value: "",
-      isValid: false
-    }
+    modalOpen: false
   };
 
   componentDidMount = () => {
-    if (!this.state.name.isValid) {
+    if (!this.state.form.name.isValid) {
       this.props.history.push(`${this.props.match.url}`);
     }
   };
@@ -48,8 +52,8 @@ class BirthdayNew extends Component {
         <div className="BirthdayNew">
           <Element name="Name" className="Element">
             <Name
-              value={this.state.name.value}
-              isValid={this.state.name.isValid}
+              value={this.state.form.name.value}
+              isValid={this.state.form.name.isValid}
               onChange={this.handleName}
               nextAction={() => scroller.scrollTo("Email", scroll)}
             />
@@ -57,8 +61,8 @@ class BirthdayNew extends Component {
 
           <Element name="Email" className="Element">
             <Email
-              value={this.state.email.value}
-              isValid={this.state.email.isValid}
+              value={this.state.form.email.value}
+              isValid={this.state.form.email.isValid}
               onChange={this.handleEmail}
               nextAction={() => scroller.scrollTo("Date", scroll)}
             />
@@ -66,29 +70,43 @@ class BirthdayNew extends Component {
 
           <Element name="Date" className="Element">
             <Date
-              day={this.state.day.value}
-              month={this.state.month.value}
-              isValid={this.state.day.isValid && this.state.month.isValid}
+              day={this.state.form.day.value}
+              month={this.state.form.month.value}
+              isValid={
+                this.state.form.day.isValid && this.state.form.month.isValid
+              }
               handleDay={this.handleDay}
               handleMonth={this.handleMonth}
               nextAction={() => scroller.scrollTo("Submit", scroll)}
             />
           </Element>
 
-          <Element name="Submit" className="Element">
-            <Submit values={this.state} />
-          </Element>
+          {Object.keys(this.state.form).reduce((acc, current) => {
+            return acc && this.state.form[current].isValid;
+          }) && (
+            <Element name="Submit" className="Element">
+              <Submit
+                values={this.state}
+                handleSubmit={this.handleSubmit}
+                modalOpen={this.state.modalOpen}
+                newRecord={this.newRecord}
+              />
+            </Element>
+          )}
         </div>
       </FadeInAnimation>
     );
   };
 
   handleName = event => {
-    const valid = !validator.isEmpty(event.target.value);
+    const valid = !validator.isEmpty(event.target.value.trim());
     this.setState({
-      name: {
-        value: event.target.value,
-        isValid: valid
+      form: {
+        ...this.state.form,
+        name: {
+          value: event.target.value,
+          isValid: valid
+        }
       }
     });
     if (event.key === "Enter" && valid) {
@@ -99,11 +117,14 @@ class BirthdayNew extends Component {
   handleEmail = event => {
     const valid =
       !validator.contains(event.target.value, "@") &&
-      !validator.isEmpty(event.target.value);
+      !validator.isEmpty(event.target.value.trim());
     this.setState({
-      email: {
-        value: event.target.value,
-        isValid: valid
+      form: {
+        ...this.state.form,
+        email: {
+          value: event.target.value,
+          isValid: valid
+        }
       }
     });
     if (event.key === "Enter" && valid) {
@@ -113,14 +134,17 @@ class BirthdayNew extends Component {
 
   handleMonth = event => {
     const valid =
-      !validator.isEmpty(event.target.value) &&
+      !validator.isEmpty(event.target.value.trim()) &&
       validator.isInt(event.target.value) &&
       event.target.value > 0 &&
       event.target.value <= 12;
     this.setState({
-      month: {
-        value: event.target.value,
-        isValid: valid
+      form: {
+        ...this.state.form,
+        month: {
+          value: event.target.value,
+          isValid: valid
+        }
       }
     });
 
@@ -131,20 +155,47 @@ class BirthdayNew extends Component {
 
   handleDay = event => {
     const valid =
-      !validator.isEmpty(event.target.value) &&
+      !validator.isEmpty(event.target.value.trim()) &&
       validator.isInt(event.target.value) &&
       event.target.value > 0 &&
       event.target.value <= 31;
     this.setState({
-      day: {
-        value: event.target.value,
-        isValid: valid
+      form: {
+        ...this.state.form,
+        day: {
+          value: event.target.value,
+          isValid: valid
+        }
       }
     });
 
-    if (event.key === "Enter" && valid && this.state.month.isValid) {
+    if (event.key === "Enter" && valid && this.state.form.month.isValid) {
       scroller.scrollTo("Submit", scroll);
     }
+  };
+
+  handleSubmit = () => {
+    axios
+      .post(
+        "http://localhost:8080",
+        {
+          name: this.state.form.name.value,
+          email: this.state.form.email.value,
+          date: `${this.state.form.day.value}-${this.state.form.month.value}`
+        },
+        {
+          headers: {
+            yesunmc: "yesunmc3ksth"
+          }
+        }
+      )
+      .then(response => {
+        this.setState({ modalOpen: true });
+      });
+  };
+
+  newRecord = () => {
+    window.location.href = `${this.props.match.url}`;
   };
 }
 

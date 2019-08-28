@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 
 //Authentication Header Verification Starts
 app.use((request, response, next) => {
-  if (request.headers["yesunmc"] === "yesunmc3ksth") {
+  if (request.headers["yesunmc"] === process.env.HEADERS) {
     next();
   } else {
     throw new Error("Access Not Allowed!");

@@ -10,6 +10,7 @@ import Add from "../../components/Add/Add";
 import validator from "validator";
 import { Element, scroller } from "react-scroll";
 import axios from "axios";
+import { notifyNewRecords } from "../../utils/Socket/Socket";
 
 const scroll = {
   duration: 500,
@@ -181,7 +182,8 @@ class BirthdayNew extends Component {
         {
           name: this.state.form.name.value,
           email: this.state.form.email.value,
-          date: `${this.state.form.day.value}-${this.state.form.month.value}`
+          day: this.state.form.day.value,
+          month: this.state.form.month.value
         },
         {
           headers: {
@@ -190,7 +192,11 @@ class BirthdayNew extends Component {
         }
       )
       .then(response => {
+        notifyNewRecords();
         this.setState({ modalOpen: true });
+      })
+      .catch(err => {
+        alert("Record is invalid!");
       });
   };
 

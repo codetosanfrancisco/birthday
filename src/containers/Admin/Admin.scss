@@ -1,0 +1,9 @@
+@import "../../assets/scss/flex";
+@import "../../assets/scss/color";
+@import "../../assets/scss/container";
+
+.Admin {
+  @include WHRelative();
+  display: flex;
+  justify-content: center;
+}

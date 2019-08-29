@@ -1,6 +1,7 @@
 @import "../../assets/scss/flex";
 @import "../../assets/scss/color";
 @import "../../assets/scss/container";
+@import "../../assets/scss/mediaquery";
 
 .Date {
   @include WHRelative();
@@ -23,7 +24,8 @@
     @include flexToCenterRow();
     padding: 10px;
     position: absolute;
-    bottom: 5%;
+    bottom: 0;
+    right: 5%;
     cursor: pointer;
 
     .Next {
@@ -36,11 +38,20 @@
     text-align: center;
     color: $whiteColor;
     position: relative;
-    bottom: 10%;
+    bottom: 5%;
+
+    @include md {
+      bottom: 10%;
+    }
   }
 
   .Birthday {
     display: flex;
+    flex-direction: column;
+
+    @include md {
+      flex-direction: row;
+    }
 
     .Month {
       @include flexToCenterColumn();
@@ -51,15 +62,25 @@
     }
 
     .Dash {
-      width: 150px;
-      height: 150px;
+      width: 100px;
+      height: 100px;
       @include flexToCenterColumn();
 
+      @include md {
+        width: 150px;
+        height: 150px;
+      }
+
       .Line {
-        width: 100px;
-        height: 5px;
+        width: 5px;
+        height: 50px;
         border-radius: 3px;
         background-color: $whiteColor;
+
+        @include md {
+          width: 100px;
+          height: 5px;
+        }
       }
     }
 
@@ -71,16 +92,22 @@
 
     .Input {
       text-align: center;
-      width: 150px;
-      height: 150px;
+      width: 100px;
+      height: 100px;
       border-radius: 10px;
       border: 2px solid $whiteColor;
       background-color: transparent;
       padding: 10px;
       box-sizing: border-box;
       outline: none;
-      font-size: 100px;
+      font-size: 50px;
       color: $whiteColor;
+
+      @include md {
+        width: 150px;
+        height: 150px;
+        font-size: 100px;
+      }
     }
   }
 }

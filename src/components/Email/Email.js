@@ -1,7 +1,6 @@
 import React from "react";
-import { FiArrowRightCircle } from "react-icons/fi";
+import { FiArrowRightCircle, FiArrowLeftCircle } from "react-icons/fi";
 import "./Email.scss";
-import { FiArrowLeftCircle } from "react-icons/fi";
 
 const Email = props => {
   return (
@@ -15,17 +14,29 @@ const Email = props => {
             value={props.value}
             onChange={event => props.onChange(event)}
             onKeyDown={event => props.onChange(event)}
+            autoFocus
           />
         </div>
 
-        <div className="Arrow">
-          {props.isValid && (
-            <FiArrowRightCircle
-              size="1.2em"
-              onClick={() => props.nextAction()}
-            />
-          )}
+        <div className="EmailPost">@nottingham.edu.my</div>
+      </div>
+      {props.isValid && (
+        <div
+          className="GoNext"
+          onClick={() => props.history.push(props.nextAction)}
+        >
+          <div className="Next">Next</div>
+          <FiArrowRightCircle color="#ffffff" size="1.5em" />
         </div>
+      )}
+      <div
+        className="GoBack"
+        onClick={() => props.history.push(props.previousAction)}
+      >
+        <div>
+          <FiArrowLeftCircle color="#ffffff" size="1.2rem" />
+        </div>
+        <div className="Back">Back</div>
       </div>
     </div>
   );

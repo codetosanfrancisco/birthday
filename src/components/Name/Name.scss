@@ -26,7 +26,7 @@
     }
 
     .InputContainer {
-      flex-basis: 85%;
+      flex-basis: 100%;
       height: 50px;
       @include flexToCenterRow();
     }
@@ -38,12 +38,6 @@
       outline: none;
       padding: 0px 10px;
       font-size: 1.2em;
-    }
-
-    .Arrow {
-      flex-basis: 15%;
-      cursor: pointer;
-      @include flexToCenterRow();
     }
   }
 
@@ -58,6 +52,20 @@
     .Text {
       color: $whiteColor;
       margin-left: 5px;
+    }
+  }
+
+  .GoNext {
+    @include flexToCenterRow();
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    right: 5%;
+    cursor: pointer;
+
+    .Next {
+      color: $whiteColor;
+      margin-right: 5px;
     }
   }
 }

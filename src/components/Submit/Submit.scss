@@ -1,5 +1,32 @@
 @import "../../assets/scss/flex";
 @import "../../assets/scss/color";
+@import "../../assets/scss/mediaquery";
+
+.ReactModal {
+  width: 80vw;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  background-color: $whiteColor;
+  padding: 20px;
+
+  @include md {
+    width: 40vw;
+  }
+}
+
+.Overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
 
 .Modal {
   @include flexToCenterColumn();
@@ -33,6 +60,15 @@
   @include flexToCenterColumn();
   color: $whiteColor;
 
+  .Container {
+    width: 75vw;
+
+    @include md {
+      width: auto;
+      @include flexToCenterColumn();
+    }
+  }
+
   .Typing {
     font-size: 3em;
     position: relative;
@@ -40,11 +76,19 @@
   }
 
   .SubmitEmail {
-    font-size: 2em;
+    font-size: 1.5em;
+
+    @include md {
+      font-size: 2em;
+    }
   }
 
   .SubmitDate {
-    font-size: 2em;
+    font-size: 1.5em;
+
+    @include md {
+      font-size: 2em;
+    }
   }
 
   .ConfirmButtonContainer {
@@ -66,5 +110,18 @@
 
   .ConfirmButton:active {
     background-color: $blackColor;
+  }
+}
+
+.GoBack {
+  @include flexToCenterRow();
+  padding: 10px;
+  position: absolute;
+  bottom: 0;
+  left: 5%;
+
+  .Back {
+    color: $whiteColor;
+    margin-left: 5px;
   }
 }

@@ -16,16 +16,16 @@ const Name = props => {
             autoFocus
           />
         </div>
-
-        <div className="Arrow">
-          {props.isValid && (
-            <FiArrowRightCircle
-              size="1.2em"
-              onClick={() => props.nextAction()}
-            />
-          )}
-        </div>
       </div>
+      {props.isValid && (
+        <div
+          className="GoNext"
+          onClick={() => props.history.push(this.props.nextAction)}
+        >
+          <div className="Next">Next</div>
+          <FiArrowRightCircle color="#ffffff" size="1.5em" />
+        </div>
+      )}
     </div>
   );
 };

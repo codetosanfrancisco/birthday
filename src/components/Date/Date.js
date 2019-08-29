@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./Date.scss";
-import { FiArrowLeftCircle, FiArrowDownCircle } from "react-icons/fi";
+import { FiArrowLeftCircle, FiArrowRightCircle } from "react-icons/fi";
 
 class Date extends Component {
   render = () => {
@@ -15,6 +15,7 @@ class Date extends Component {
                 onChange={event => this.props.handleMonth(event)}
                 onKeyDown={event => this.props.handleMonth(event)}
                 value={this.props.month}
+                autoFocus
               />
             </div>
             <div className="SubText">Month (eg : 10)</div>
@@ -35,11 +36,24 @@ class Date extends Component {
           </div>
         </div>
         {this.props.isValid && (
-          <div className="GoNext" onClick={() => this.props.nextAction()}>
+          <div
+            className="GoNext"
+            onClick={() => this.props.history.push(this.props.nextAction)}
+          >
             <div className="Next">Next</div>
-            <FiArrowDownCircle color="#ffffff" size="1.5em" />
+            <FiArrowRightCircle color="#ffffff" size="1.5em" />
           </div>
         )}
+
+        <div
+          className="GoBack"
+          onClick={() => this.props.history.push(this.props.previousAction)}
+        >
+          <div>
+            <FiArrowLeftCircle color="#ffffff" size="1.2rem" />
+          </div>
+          <div className="Back">Back</div>
+        </div>
       </div>
     );
   };

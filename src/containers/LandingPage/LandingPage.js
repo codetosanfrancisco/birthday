@@ -34,7 +34,7 @@ class LandingPage extends Component {
 
   handleChange = value => {
     this.setState({ password: value });
-    if (validator.equals(value, "yesunmc3ksth")) {
+    if (validator.equals(value, "yesunmc")) {
       Cookies.set("yesunmc", true);
       this.props.history.push("/birthday/new");
     }

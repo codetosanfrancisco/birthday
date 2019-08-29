@@ -8,6 +8,7 @@
     "js-cookie": "^2.2.1",
     "node-sass": "^4.12.0",
     "owl.carousel": "^2.3.4",
+    "query-string": "^6.8.2",
     "radium": "^0.25.2",
     "rc-table": "^6.7.0",
     "react": "^16.9.0",
